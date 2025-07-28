@@ -1,6 +1,52 @@
-# 🛒 E-Commerce Backend API (Node.js + Express + MongoDB)
+# 🛒 E-Commerce Backend API
 
-This is a fully functional backend API for an e-commerce application built with **Node.js**, **Express.js**, and **MongoDB**. It includes features like user registration & login (with JWT), product management, and cart operations.
+This is the complete **Node.js + Express.js + MongoDB** backend for an E-Commerce website. It includes:
+
+- User Authentication using JWT
+- Product Management (CRUD)
+- Shopping Cart Management
+- Protected Routes using Middleware
+- Fully tested with Postman
+
+---
+
+## 📁 Project Structure
+
+ecommerce/
+│
+├── config/ # DB connection config
+│ └── db.js
+│
+├── Controllers/ # All logic/controllers
+│ ├── cartController.js
+│ ├── productController.js
+│ └── user.js
+│
+├── Middlewares/
+│ └── Auth.js # JWT verification middleware
+│
+├── Models/ # Mongoose schemas
+│ ├── Cart.js
+│ ├── Product.js
+│ └── User.js
+│
+├── Routes/ # API route files
+│ ├── cart.js
+│ ├── product.js
+│ └── user.js
+│
+├── .env # Secrets & env variables
+├── .gitignore
+├── app.js # App initialization
+├── server.js # Server entry point
+├── package.json
+└── README.md
+
+yaml
+Copy
+Edit
+
+
 
 ---
 
@@ -8,71 +54,81 @@ This is a fully functional backend API for an e-commerce application built with 
 
 - Node.js
 - Express.js
-- MongoDB
-- Mongoose
+- MongoDB + Mongoose
 - JWT Authentication
-- RESTful APIs
-- Postman (for testing)
+- Postman for testing
+- MVC Pattern
 
 ---
 
-## 📁 Folder Structure
+## 🚀 API Endpoints
 
+### 👤 User APIs
+| Method | Endpoint             | Description         |
+|--------|----------------------|---------------------|
+| POST   | /api/user/register   | Register new user   |
+| POST   | /api/user/login      | Login existing user |
 
 ---
 
-## 🚀 Features
+### 📦 Product APIs
+| Method | Endpoint             | Description             |
+|--------|----------------------|-------------------------|
+| POST   | /api/product/add     | Add new product         |
+| GET    | /api/product/all     | Get all products        |
+| GET    | /api/product/:id     | Get product by ID       |
+| PUT    | /api/product/:id     | Update product by ID    |
+| DELETE | /api/product/:id     | Delete product by ID    |
 
-### 👤 User
-- Register
-- Login (JWT token-based)
+---
 
-### 📦 Product
-- Add Product
-- Get All Products
-- Get Product by ID
-- Update Product
-- Delete Product
+### 🛒 Cart APIs (Protected)
+Use token in headers:  
+**Header**: `Auth: <JWT_TOKEN>`
 
-### 🛒 Cart
-- Add to Cart
-- Get User Cart
-- Remove Item
-- Decrease Quantity
-- Clear Cart
+| Method | Endpoint                    | Description                  |
+|--------|-----------------------------|------------------------------|
+| POST   | /api/cart/add               | Add item to cart             |
+| GET    | /api/cart/user              | Get user cart                |
+| DELETE | /api/cart/remove/:productId | Remove product from cart     |
+| POST   | /api/cart/--qty             | Decrease quantity of product |
+| DELETE | /api/cart/clear             | Clear entire cart            |
 
 ---
 
 ## 🔐 Authentication
 
-JWT token-based authentication is required for all cart-related operations. Use the token as a header:
+JWT is used to protect certain routes like Cart APIs.
 
+### 🔑 Header Example:
 
 
 ---
 
-## 📮 API Endpoints Summary
+## 🧪 How to Test with Postman
 
-| Method | Endpoint                 | Description           |
-|--------|--------------------------|-----------------------|
-| POST   | /api/user/register       | Register a new user   |
-| POST   | /api/user/login          | Login user            |
-| POST   | /api/product/add         | Add a new product     |
-| GET    | /api/product/all         | Get all products      |
-| GET    | /api/product/:id         | Get product by ID     |
-| PUT    | /api/product/:id         | Update product        |
-| DELETE | /api/product/:id         | Delete product        |
-| POST   | /api/cart/add            | Add item to cart      |
-| GET    | /api/cart/user           | Get user cart         |
-| DELETE | /api/cart/remove/:id     | Remove product from cart |
-| POST   | /api/cart/--qty          | Decrease product qty  |
-| DELETE | /api/cart/clear          | Clear entire cart     |
+1. Register a user via `/api/user/register`
+2. Login and copy the JWT token
+3. Use the token as a header (`Auth`) to test protected routes
+4. Use the Product APIs to create products
+5. Use the Cart APIs to simulate shopping cart actions
 
 ---
 
-## 📦 Installation (Local Setup)
+## 🛠️ Installation & Setup
 
 ```bash
-git clone https://github.com/your-username/ecommerce-backend-nodejs.git
-cd E-commerce
+git clone https://github.com/VoraParth007/ecommerce-backend-nodejs.git
+cd ecommerce-backend-nodejs
 npm install
+
+
+👨‍💻 Author
+Your Parth Vora
+Backend Developer
+🔗 GitHub: https://github.com/VoraParth007/
+🔗 LinkedIn: https://www.linkedin.com/in/parth777
+
+📌 Status
+✅ Backend Complete
+🚧 Frontend Coming Soon
