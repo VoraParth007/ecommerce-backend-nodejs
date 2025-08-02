@@ -2,13 +2,6 @@
 
 This is the complete **Node.js + Express.js + MongoDB** backend for an E-Commerce website. It includes:
 
-- User Authentication using JWT
-- Product Management (CRUD)
-- Shopping Cart Management
-- Protected Routes using Middleware
-- Fully tested with Postman
-
-
 ---
 
 ## ⚙️ Tech Stack
@@ -17,14 +10,26 @@ This is the complete **Node.js + Express.js + MongoDB** backend for an E-Commerc
 - Express.js
 - MongoDB + Mongoose
 - JWT Authentication
-- Postman for testing
+- Role-based Authorization (Admin/User)
 - MVC Pattern
+- Postman for API testing
+---
+
+## 🚀 Features
+
+- ✅ User Register & Login (JWT)
+- ✅ Role-based Access Control
+- ✅ Admin-only Product Management (Add/Delete/Update)
+- ✅ Users can view all products
+- ✅ Cart: Add, Remove, Clear items
+- ✅ Protected routes using custom middleware
 
 ---
 
+
 ## 🚀 API Endpoints
 
-### 👤 User APIs
+👤 User APIs
 | Method | Endpoint             | Description         |
 |--------|----------------------|---------------------|
 | POST   | /api/user/register   | Register new user   |
@@ -32,14 +37,15 @@ This is the complete **Node.js + Express.js + MongoDB** backend for an E-Commerc
 
 ---
 
-### 📦 Product APIs
-| Method | Endpoint             | Description             |
-|--------|----------------------|-------------------------|
-| POST   | /api/product/add     | Add new product         |
-| GET    | /api/product/all     | Get all products        |
-| GET    | /api/product/:id     | Get product by ID       |
-| PUT    | /api/product/:id     | Update product by ID    |
-| DELETE | /api/product/:id     | Delete product by ID    |
+📦 Product APIs
+| Method | Endpoint           | Access     | Description          |
+| ------ | ------------------ | ---------- | -------------------- |
+| POST   | `/api/product/add` | Admin      | Add new product      |
+| GET    | `/api/product/all` | User/Admin | Get all products     |
+| GET    | `/api/product/:id` | Public     | Get product by ID    |
+| PUT    | `/api/product/:id` | Admin      | Update product by ID |
+| DELETE | `/api/product/:id` | Admin      | Delete product by ID |
+
 
 ---
 
@@ -57,24 +63,29 @@ Use token in headers:
 
 ---
 
-## 🔐 Authentication
+---
 
-JWT is used to protect certain routes like Cart APIs.
+🧪 How to Test with Postman
 
-### 🔑 Header Example:
+1.Register User → /api/user/register
+2.Login → /api/user/login → copy token
+3.Use Auth Header in Postman:
 
+Key: Auth
+Value: <JWT_TOKEN>
+
+4.Create Product (Admin Only) → /api/product/add
+5.View Products → /api/product/all
+6.Add to Cart → /api/cart/add
+7.View Cart → /api/cart/user
 
 ---
 
-## 🧪 How to Test with Postman
-
-1. Register a user via `/api/user/register`
-2. Login and copy the JWT token
-3. Use the token as a header (`Auth`) to test protected routes
-4. Use the Product APIs to create products
-5. Use the Cart APIs to simulate shopping cart actions
-
----
+📦 Environment Variables
+Create a .env file:
+PORT=5000
+MONGO_URL=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
 
 ## 🛠️ Installation & Setup
 
